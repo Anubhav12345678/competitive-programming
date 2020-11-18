@@ -1,0 +1,38 @@
+
+
+/*
+
+User Accepted:3263
+User Tried:5320
+Total Accepted:3322
+Total Submissions:11829
+Difficulty:Medium
+There are several cards arranged in a row, and each card has an associated number of points The points are 
+given in the integer array cardPoints.
+
+In one step, you can take one card from the beginning or from the end of the row. You have to take exactly k cards.
+
+Your score is the sum of the points of the cards you have taken.
+
+Given the integer array cardPoints and the integer k, return the maximum score you can obtain	
+
+
+
+
+*/
+
+
+
+
+
+int ma=0;
+		int i,j;
+		int cur=0;
+		FOR(i,k) cur+=cardPoints[i];
+		ma=cur;
+		for(i=0,j=k-1;j>=0,i<k;i++,j--) {
+			cur-=cardPoints[j];
+			cur+=cardPoints[cardPoints.size()-1-i];
+			ma=max(ma,cur);
+		}
+		return ma;

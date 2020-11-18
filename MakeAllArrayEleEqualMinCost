@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+//   https://ideone.com/azKH00
+ll compcost(ll a[],ll n,ll x)
+{
+	ll cost=0;
+	for(ll i=0;i<n;i++)
+	cost+=abs(a[i]-x);
+	return cost;
+}
+ll mincost(ll a[],ll n)
+{
+	ll low,high;
+	low=a[0];
+	high=a[0];
+	for(ll i=1;i<n;i++)
+	{
+		if(a[i]<low)
+		low=a[i];
+		if(a[i]>high)
+		high=a[i];
+	}
+	// loop till this diff>=3 as afetr that low and high start repaeting
+	while((high-low)>2)
+	{
+				ll m1 = low+(high-low)/3;
+		ll m2 = high-(high-low)/3;
+		ll c1 = compcost(a,n,m1);
+		ll c2 = compcost(a,n,m2);
+		if(c1<c2)
+		high=m2;
+		else 
+		low=m1;
+	}
+	return compcost(a,n,(low+high)/2);
+}
+int main() {
+	ll arr[] = { 1, 100, 101 }; 
+    ll N = sizeof(arr) / sizeof(ll); 
+    cout <<mincost(arr, N); 
+    // return 0;
+	return 0;
+}		
